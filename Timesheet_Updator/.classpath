@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="E:/Machine setup/selenium-java-3.6.0/client-combined-3.6.0.jar"/>
+	<classpathentry kind="lib" path="E:/Machine setup/selenium-java-3.6.0/libs/byte-buddy-1.7.5.jar"/>
+	<classpathentry kind="lib" path="E:/Machine setup/selenium-java-3.6.0/libs/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="E:/Machine setup/selenium-java-3.6.0/libs/commons-exec-1.3.jar"/>
+	<classpathentry kind="lib" path="E:/Machine setup/selenium-java-3.6.0/libs/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="E:/Machine setup/selenium-java-3.6.0/libs/gson-2.8.0.jar"/>
+	<classpathentry kind="lib" path="E:/Machine setup/selenium-java-3.6.0/libs/guava-23.0.jar" sourcepath="C:/Users/ABHISH~1/AppData/Local/Temp/.org.sf.feeling.decompiler1507785609549/source/guava-23.0-sources.jar"/>
+	<classpathentry kind="lib" path="E:/Machine setup/selenium-java-3.6.0/libs/httpclient-4.5.3.jar"/>
+	<classpathentry kind="lib" path="E:/Machine setup/selenium-java-3.6.0/libs/httpcore-4.4.6.jar"/>
+	<classpathentry kind="lib" path="E:/Machine setup/selenium-java-3.6.0/libs/jna-4.1.0.jar"/>
+	<classpathentry kind="lib" path="E:/Machine setup/selenium-java-3.6.0/libs/jna-platform-4.1.0.jar"/>
+	<classpathentry kind="lib" path="E:/Machine setup/slf4j with logback/logback-classic-1.1.3.jar" sourcepath="C:/Users/ABHISH~1/AppData/Local/Temp/.org.sf.feeling.decompiler1509438167734/source/logback-classic-1.1.3-sources.jar"/>
+	<classpathentry kind="lib" path="E:/Machine setup/slf4j with logback/logback-core-1.1.3.jar"/>
+	<classpathentry kind="lib" path="E:/Machine setup/slf4j with logback/slf4j-api-1.7.12.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
