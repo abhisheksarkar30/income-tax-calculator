@@ -1,4 +1,4 @@
 /.metadata/
-/Utilities/bin
-/Utilities/.classpath
-/Utilities/.project
+/*/bin
+/*/.classpath
+/*/.project
