@@ -1,4 +1,7 @@
 /.metadata/
-/*/bin
-/*/.classpath
-/*/.project
+*/.classpath
+*/.project
+*/*.iml
+*/.settings
+*/.idea
+*/bin
