@@ -11,13 +11,26 @@ public class ClipboardProcessingService extends UIProcessor implements Clipboard
     private String last;
 
     public ClipboardProcessingService() {
-        sysClip = Toolkit.getDefaultToolkit().getSystemClipboard();
+    	while(true) {
+    		try {
+    			sysClip = Toolkit.getDefaultToolkit().getSystemClipboard();
+    			break;
+    		} catch (HeadlessException e) {
+    			System.out.println("Exception occurred: " + e);
+    			try {
+					Thread.sleep(20);
+				} catch(Exception e1) {
+					System.out.println("Exception: " + e1);
+				}
+    		}
+    	}
         last = "";
     }
 
     @Override
    	public void init() {
-   		super.init();Transferable trans = sysClip.getContents(this);
+   		super.init();
+   		Transferable trans = getContents();
         regainOwnership(trans);
         System.out.println("Listening to board...");
     }
@@ -29,7 +42,7 @@ public class ClipboardProcessingService extends UIProcessor implements Clipboard
         } catch(Exception e) {
             System.out.println("Exception: " + e);
         }
-        Transferable contents = sysClip.getContents(this);
+        Transferable contents = getContents();
         regainOwnership(processContents(contents));
     }
 
@@ -63,11 +76,38 @@ public class ClipboardProcessingService extends UIProcessor implements Clipboard
         return content;
     }
 
-    private void regainOwnership(Transferable t) {
-        sysClip.setContents(t, this);
+    private void regainOwnership(Object t) {
+    	while(true) {
+    		try {
+    			if(t instanceof Transferable) {
+    				sysClip.setContents((Transferable) t, this);
+    			} else {
+    				sysClip.setContents((StringSelection) t, this);
+    			}
+    			break;
+    		} catch (IllegalStateException e) {
+    			System.out.println("Exception occurred: " + e);
+    			try {
+    				Thread.sleep(20);
+    			} catch(Exception e1) {
+    				System.out.println("Exception: " + e1);
+    			}
+    		}
+    	}
     }
-
-    private void regainOwnership(StringSelection t) {
-        sysClip.setContents(t, this);
+    
+    private Transferable getContents() {
+    	while(true) {
+    		try {
+    			return sysClip.getContents(this);
+    		} catch (IllegalStateException e) {
+    			System.out.println("Exception occurred: " + e);
+    			try {
+    				Thread.sleep(20);
+    			} catch(Exception e1) {
+    				System.out.println("Exception: " + e1);
+    			}
+    		}
+    	}
     }
 }
