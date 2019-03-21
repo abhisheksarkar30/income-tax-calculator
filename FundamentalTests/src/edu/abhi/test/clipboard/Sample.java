@@ -1,4 +1,4 @@
-package com.abhi.feature.clipboard.console;
+package edu.abhi.test.clipboard;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.ClipboardOwner;
