@@ -11,10 +11,10 @@ public class ClipboardProcessingService extends UIProcessor implements Clipboard
     private String last;
 
     public ClipboardProcessingService() {
-    	while(true) {
+    	while(true) { //Retry on exception
     		try {
     			sysClip = Toolkit.getDefaultToolkit().getSystemClipboard();
-    			break;
+    			break; //Continue normal operation if no exception occurs
     		} catch (HeadlessException e) {
     			System.out.println("Exception occurred: " + e);
     			try {
@@ -76,15 +76,11 @@ public class ClipboardProcessingService extends UIProcessor implements Clipboard
         return content;
     }
 
-    private void regainOwnership(Object t) {
-    	while(true) {
+    private void regainOwnership(Transferable t) {
+    	while(true) { //Retry on exception
     		try {
-    			if(t instanceof Transferable) {
-    				sysClip.setContents((Transferable) t, this);
-    			} else {
-    				sysClip.setContents((StringSelection) t, this);
-    			}
-    			break;
+    			sysClip.setContents(t, this);
+    			break; //Continue normal operation if no exception occurs
     		} catch (IllegalStateException e) {
     			System.out.println("Exception occurred: " + e);
     			try {
@@ -97,9 +93,9 @@ public class ClipboardProcessingService extends UIProcessor implements Clipboard
     }
     
     private Transferable getContents() {
-    	while(true) {
+    	while(true) { //Retry on exception
     		try {
-    			return sysClip.getContents(this);
+    			return sysClip.getContents(this); //Continue normal operation if no exception occurs
     		} catch (IllegalStateException e) {
     			System.out.println("Exception occurred: " + e);
     			try {
