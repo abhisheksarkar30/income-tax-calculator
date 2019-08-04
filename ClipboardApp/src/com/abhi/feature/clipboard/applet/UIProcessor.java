@@ -5,6 +5,8 @@ package com.abhi.feature.clipboard.applet;
 
 import java.applet.Applet;
 import java.awt.Button;
+import java.awt.Checkbox;
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -24,6 +26,8 @@ import javax.swing.BoxLayout;
 @SuppressWarnings("serial")
 public abstract class UIProcessor extends Applet implements ActionListener {
 
+	protected static final String STRING_ELEMENT = "String";
+	protected static final String NUMBER_ELEMENT = "Number";
 	private int FIXED_COLUMN_SIZE = 6;
 	private TextField delimiter, separator;
 	private TextField tokenStartsWith, tokenEndsWith, finalStartsWith, finalEndsWith;
@@ -32,17 +36,20 @@ public abstract class UIProcessor extends Applet implements ActionListener {
 	protected String tokenStartsWithStr, tokenEndsWithStr, finalStartsWithStr, finalEndsWithStr;
 	protected String replaceThisStr, replaceWithStr;
 	protected TextArea originalContent, processedContent;
-	private Button submit; 
+	private Button submit;
+	private Checkbox sort, desc;
+	private Choice elementType;
+	protected boolean sortV, descV;
+	protected String elementTypeV;
 	
 	private void setWindowProperties() {
         setFont(new Font("TimesRoman", Font.ITALIC, 12));
         setBackground(new Color(255, 250, 240));
         setSize(650, 250);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        Panel rows[] = {new Panel(new GridLayout(1, FIXED_COLUMN_SIZE)), 
-        		new Panel(new GridLayout(1, FIXED_COLUMN_SIZE)), new Panel(new GridLayout(1, FIXED_COLUMN_SIZE))};
-        for(Panel row : rows)
-        	add(row);
+        Panel rows[] = new Panel[4];
+        for(int rowCount = 1; rowCount <= 4; rowCount++)
+        	add(rows[rowCount-1] = new Panel(new GridLayout(1, FIXED_COLUMN_SIZE)));
 		populateRowPanels(rows);
     }
 	
@@ -55,8 +62,19 @@ public abstract class UIProcessor extends Applet implements ActionListener {
     	finalEndsWith = addFieldWithLabel("Final Ends With", Boolean.TRUE, args[1]);
     	replaceThis = addFieldWithLabel("Replace", Boolean.TRUE, args[2]);
     	replaceWith = addFieldWithLabel("Replace With", Boolean.TRUE, args[2]);
-    	args[2].add(new Label());
-    	submit = (Button) args[2].add(new Button("Submit"));
+    	
+    	sort = (Checkbox) args[2].add(new Checkbox("Sort"));
+    	desc = (Checkbox) args[2].add(new Checkbox("Desc"));
+
+    	args[3].add(new Label("Element Type"));
+    	elementType = (Choice) args[3].add(new Choice());
+    	elementType.add(STRING_ELEMENT);
+    	elementType.add(NUMBER_ELEMENT);
+    	
+    	args[3].add(new Label());
+    	args[3].add(new Label());
+    	args[3].add(new Label());
+    	submit = (Button) args[3].add(new Button("Submit"));
     	submit.addActionListener(this);
 	}
     
@@ -119,12 +137,16 @@ public abstract class UIProcessor extends Applet implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		delimiterStr = delimiter.getText();
 		separatorStr = separator.getText();
+		separatorStr = separatorStr.equals("\\n")?"\n":separatorStr;
 		tokenStartsWithStr = tokenStartsWith.getText();
 		tokenEndsWithStr = tokenEndsWith.getText();
 		finalStartsWithStr = finalStartsWith.getText();
 		finalEndsWithStr = finalEndsWith.getText();
 		replaceThisStr = replaceThis.getText();
 		replaceWithStr = replaceWith.getText();
+		sortV = sort.getState();
+		descV = desc.getState();
+		elementTypeV = elementType.getSelectedItem();
 	}
 
 }
