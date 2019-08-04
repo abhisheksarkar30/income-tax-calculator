@@ -40,7 +40,7 @@ public abstract class CalculatorLayoutManager extends Applet {
         add(la);
         TextField t;
         if(text.equals("Std Exempt:"))
-            t = new TextField("40000");
+            t = new TextField(getStdDeduction());
         else
             t = new TextField("");
         if(isEditable)
@@ -72,5 +72,9 @@ public abstract class CalculatorLayoutManager extends Applet {
         add(new Label("Sarkar"));
         add(new Label());
     }
+
+	protected abstract String getStdDeduction();
+	
+	protected abstract String  getAppHeader();
 
 }

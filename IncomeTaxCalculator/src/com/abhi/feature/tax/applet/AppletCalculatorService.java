@@ -10,8 +10,10 @@ import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
 import java.util.ArrayList;
 
+import com.abhi.feature.tax.fy2019_20.IncomeTaxCalculatorFY2019_20;
+
 @SuppressWarnings("serial")
-public class AppletCalculatorService extends IncomeTaxCalculatorFY2018_19 
+public class AppletCalculatorService extends IncomeTaxCalculatorFY2019_20
 						implements KeyListener, TextListener {
 
 	private String lastContent;

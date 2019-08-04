@@ -1,11 +1,13 @@
 /**
  * 
  */
-package com.abhi.feature.tax.applet;
+package com.abhi.feature.tax.fy2018_19;
 
 import java.awt.TextField;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+
+import com.abhi.feature.tax.applet.CalculatorLayoutManager;
 
 /**
  * @author abhishek
@@ -16,11 +18,24 @@ public abstract class IncomeTaxCalculatorFY2018_19 extends CalculatorLayoutManag
 	
 	private long taxableSum;
 	
+	private final String stdDeduction = "40000";
+	private final String appHeader = "Income Tax Calculator: FY2018_19";
+	
+	@Override
+	protected String getStdDeduction() {
+		return stdDeduction;
+	}
+	
+	@Override
+	public String getAppHeader() {
+		return appHeader;
+	}
+
 	protected void calculateTax() {
         double tax = 0;
         if(taxableSum>250000 && taxableSum<=500000) {
             tax = (taxableSum - 250000) * 0.05;
-            if(taxableSum<350000)
+            if(taxableSum<=350000)
                 tax = tax>2500? tax-2500:0;
         } else if(taxableSum>500000 && taxableSum<=1000000)
             tax = (taxableSum-500000)*0.2 + 250000*0.05;
